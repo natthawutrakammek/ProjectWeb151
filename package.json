@@ -1,0 +1,27 @@
+{
+  "name": "dormitory-mvc-web",
+  "version": "1.0.0",
+  "description": "Full-stack MVC dormitory management web application for Web Programming class project.",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node --no-warnings src/server.js",
+    "dev": "node --watch --no-warnings src/server.js",
+    "seed": "node --no-warnings scripts/seed.js",
+    "check": "node --check src/server.js"
+  },
+  "engines": {
+    "node": ">=22.5.0"
+  },
+  "keywords": [
+    "mvc",
+    "dormitory",
+    "sqlite",
+    "web-programming"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "@supabase/ssr": "^0.10.2",
+    "@supabase/supabase-js": "^2.105.1",
+    "dotenv": "^17.4.2"
+  }
+}
