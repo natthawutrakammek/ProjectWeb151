@@ -648,60 +648,16 @@ th {
 
 .auth-visual {
   display: grid;
-  grid-template-rows: auto 1fr;
   background: linear-gradient(180deg, #f6fcfa 0%, #ebf7f3 100%);
   border-left: 1px solid #dbe8e3;
 }
 
 .auth-photo {
   width: 100%;
-  aspect-ratio: 4 / 5;
-  min-height: 320px;
+  height: 100%;
+  min-height: 100%;
   object-fit: cover;
   background: #f4faf8;
-}
-
-.auth-visual-body {
-  display: grid;
-  align-content: start;
-  gap: 12px;
-  padding: 22px 24px 24px;
-}
-
-.auth-visual-body h2 {
-  margin-bottom: 0;
-  font-size: 1.45rem;
-  line-height: 1.25;
-}
-
-.auth-visual-lead {
-  margin-bottom: 0;
-  color: #4f6271;
-}
-
-.auth-highlight-list {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-}
-
-.auth-highlight {
-  display: inline-flex;
-  align-items: center;
-  min-height: 32px;
-  padding: 6px 10px;
-  border: 1px solid #d4e7e0;
-  border-radius: 6px;
-  background: rgba(255, 255, 255, 0.72);
-  color: var(--primary-strong);
-  font-size: 0.92rem;
-  font-weight: 700;
-}
-
-.auth-visual-copy {
-  margin: 0;
-  color: #5c6e7c;
-  font-weight: 600;
 }
 
 .auth-links {
@@ -759,7 +715,6 @@ th {
   }
 
   .auth-photo {
-    aspect-ratio: auto;
     max-height: 320px;
     min-height: 220px;
   }
@@ -804,9 +759,5 @@ th {
 
   .auth-copy {
     padding: 22px;
-  }
-
-  .auth-visual-body {
-    padding: 18px 18px 20px;
   }
 }

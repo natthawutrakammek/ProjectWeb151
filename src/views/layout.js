@@ -16,11 +16,6 @@ function brandMedia(settings, className) {
 }
 
 function authVisual(settings) {
-  const dormCode = (settings?.dorm_code || '').trim();
-  const helperCopy = dormCode
-    ? `รหัสหอ: ${dormCode}`
-    : 'รองรับหลายหอ แยกข้อมูลและผู้ใช้งานของแต่ละหอออกจากกัน';
-
   return `
     <div class="auth-visual">
       <img
@@ -28,17 +23,6 @@ function authVisual(settings) {
         alt="ภาพประกอบการจัดการหอพักออนไลน์และการรับลูกหอเข้าพัก"
         class="auth-photo"
       >
-      <div class="auth-visual-body">
-        <p class="eyebrow">Dormitory Management</p>
-        <h2>ดูแลห้อง บิล และลูกหอในพื้นที่ของหอคุณ</h2>
-        <p class="auth-visual-lead">เริ่มสร้างหอใหม่ เข้าสู่ระบบ หรือให้ลูกหอลงทะเบียนด้วยรหัสหอของตัวเองได้ในที่เดียว</p>
-        <div class="auth-highlight-list">
-          <span class="auth-highlight">แยกข้อมูลแต่ละหอชัดเจน</span>
-          <span class="auth-highlight">จัดการห้องและบิลได้ง่าย</span>
-          <span class="auth-highlight">ใช้งานได้ทั้งเจ้าของหอและลูกหอ</span>
-        </div>
-        <p class="auth-visual-copy">${escapeHtml(helperCopy)}</p>
-      </div>
     </div>
   `;
 }
