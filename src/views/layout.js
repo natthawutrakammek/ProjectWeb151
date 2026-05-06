@@ -15,6 +15,34 @@ function brandMedia(settings, className) {
   return `<div class="${className} brand-photo-fallback">${initial}</div>`;
 }
 
+function authVisual(settings) {
+  const dormCode = (settings?.dorm_code || '').trim();
+  const helperCopy = dormCode
+    ? `รหัสหอ: ${dormCode}`
+    : 'รองรับหลายหอ แยกข้อมูลและผู้ใช้งานของแต่ละหอออกจากกัน';
+
+  return `
+    <div class="auth-visual">
+      <img
+        src="/images/main_page_picture.png"
+        alt="ภาพประกอบการจัดการหอพักออนไลน์และการรับลูกหอเข้าพัก"
+        class="auth-photo"
+      >
+      <div class="auth-visual-body">
+        <p class="eyebrow">Dormitory Management</p>
+        <h2>ดูแลห้อง บิล และลูกหอในพื้นที่ของหอคุณ</h2>
+        <p class="auth-visual-lead">เริ่มสร้างหอใหม่ เข้าสู่ระบบ หรือให้ลูกหอลงทะเบียนด้วยรหัสหอของตัวเองได้ในที่เดียว</p>
+        <div class="auth-highlight-list">
+          <span class="auth-highlight">แยกข้อมูลแต่ละหอชัดเจน</span>
+          <span class="auth-highlight">จัดการห้องและบิลได้ง่าย</span>
+          <span class="auth-highlight">ใช้งานได้ทั้งเจ้าของหอและลูกหอ</span>
+        </div>
+        <p class="auth-visual-copy">${escapeHtml(helperCopy)}</p>
+      </div>
+    </div>
+  `;
+}
+
 function navLink(active, key, href, label) {
   const current = active === key ? ' aria-current="page"' : '';
   return `<a href="${href}" class="nav-link${active === key ? ' active' : ''}"${current}>${label}</a>`;
@@ -111,10 +139,7 @@ function authPage({ title, body, settings }) {
             <h1>${escapeHtml(title)}</h1>
             ${body}
           </div>
-          <div class="auth-visual">
-            ${brandMedia(settings, 'auth-photo')}
-            <p class="auth-visual-copy">${escapeHtml(settings?.dorm_code || 'multi-dorm')}</p>
-          </div>
+          ${authVisual(settings)}
         </section>
       </main>
     </body>

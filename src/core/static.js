@@ -2,6 +2,7 @@ const fs = require('node:fs');
 const path = require('node:path');
 
 const PUBLIC_DIR = path.resolve(__dirname, '..', '..', 'public');
+const IMAGE_DIR = path.resolve(__dirname, '..', '..', 'images');
 
 const MIME_TYPES = {
   '.css': 'text/css; charset=utf-8',
@@ -16,14 +17,23 @@ const MIME_TYPES = {
 
 function sendStatic(req, res) {
   const url = new URL(req.url, `http://${req.headers.host ?? 'localhost'}`);
-  if (!url.pathname.startsWith('/assets/') && !url.pathname.startsWith('/uploads/')) {
+  const requestedPath = decodeURIComponent(url.pathname);
+  let rootDir = '';
+  let relativePath = '';
+
+  if (requestedPath.startsWith('/assets/') || requestedPath.startsWith('/uploads/')) {
+    rootDir = PUBLIC_DIR;
+    relativePath = path.normalize(requestedPath.slice(1));
+  } else if (requestedPath.startsWith('/images/')) {
+    rootDir = IMAGE_DIR;
+    relativePath = path.normalize(requestedPath.slice('/images/'.length));
+  } else {
     return false;
   }
 
-  const requestedPath = path.normalize(decodeURIComponent(url.pathname));
-  const filePath = path.resolve(PUBLIC_DIR, `.${requestedPath}`);
+  const filePath = path.resolve(rootDir, relativePath);
 
-  if (!filePath.startsWith(PUBLIC_DIR)) {
+  if (filePath !== rootDir && !filePath.startsWith(`${rootDir}${path.sep}`)) {
     res.writeHead(403);
     res.end('Forbidden');
     return true;
